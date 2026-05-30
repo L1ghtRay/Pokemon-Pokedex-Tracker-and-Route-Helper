@@ -14,6 +14,7 @@ SQUARE_SIZE = 30
 squares_cache = []
 pokedex = {}
 ref = None
+firebase_listener = None
 
 
 def get_asset_path(relative_path):
@@ -26,20 +27,8 @@ def get_asset_path(relative_path):
 
 
 def on_closing():
-    global firebase_listener
     print("Shutting down cleanly...")
-    
-    try:
-        # If the listener exists, close the streaming connection
-        if 'firebase_listener' in globals() and firebase_listener is not None:
-            firebase_listener.close()
-    except Exception as e:
-        print(f"Error closing Firebase listener: {e}")
-        
-    # Destroy the Tkinter window completely
     app.destroy()
-    
-    # Forcefully exit the Python process to catch any remaining rogue threads
     os._exit(0)
 
 
