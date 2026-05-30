@@ -1,0 +1,4 @@
+build/
+dist/
+supplementaries and backups/
+*.spec
