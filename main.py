@@ -11,6 +11,7 @@ import threading
 SQUARE_SIZE = 30
 
 squares_cache = {}
+image_cache = {}
 pokedex = {}
 ref = None
 firebase_listener = None
@@ -44,6 +45,24 @@ def printPokedex():
         print(pokemon)
 
 
+def get_pokemon_images(pokemon_name):
+    if pokemon_name in image_cache:
+        return image_cache[pokemon_name]
+    
+    image_path = get_asset_path(os.path.join("assets", "pokemon", f"{pokemon_name.lower()}.png"))
+    raw_img = Image.open(image_path).convert("RGBA")
+    
+    enhancer = ImageEnhance.Brightness(raw_img)
+    dark_raw_img = enhancer.enhance(0.3)
+    
+    img_size = SQUARE_SIZE - 4
+    normal = ctk.CTkImage(light_image=raw_img, dark_image=raw_img, size=(img_size, img_size))
+    dark = ctk.CTkImage(light_image=dark_raw_img, dark_image=dark_raw_img, size=(img_size, img_size))
+    
+    image_cache[pokemon_name] = (normal, dark)
+    return normal, dark
+
+
 def open_database_creds():
     global ref, local_only, cred
     
@@ -51,11 +70,6 @@ def open_database_creds():
         title="Select Database Credentials JSON File",
         filetypes=[("JSON Files", "*.json")]
     )
-
-    database_url = ctk.CTkInputDialog(
-        text="Enter Database URL:",
-        title="Database URL Required"
-    ).get_input()
 
     if firebase_admin._apps:
         print("Found an existing Firebase app connection. Resetting...")
@@ -65,18 +79,25 @@ def open_database_creds():
         firebase_admin.delete_app(old_app)
         print("Previous connection terminated successfully.")
 
-    try:
-        cred = credentials.Certificate(file_path)
-        firebase_admin.initialize_app(cred, {
-            "databaseURL": database_url
-        })
-        local_only = False
+    if file_path:
+        try:
+            database_url = ctk.CTkInputDialog(
+                text="Enter Database URL:",
+                title="Database URL Required"
+            ).get_input()
 
-    except Exception as e:
-        messagebox.showerror(
-            title="Error", 
-            message=f"Database error: {e}"
-        )
+            if database_url:
+                cred = credentials.Certificate(file_path)
+                firebase_admin.initialize_app(cred, {
+                    "databaseURL": database_url
+                })
+                local_only = False
+
+        except Exception as e:
+            messagebox.showerror(
+                title="Error", 
+                message=f"Database error: {e}"
+            )
 
 
 def open_pokedex_file():
@@ -105,20 +126,22 @@ def open_pokedex_file():
         try:
             with open(pokedex_file_path, 'r') as f:
                 pokedex = json.load(f)
-                for pokemon_name in pokedex.keys():
-                    pokedex[pokemon_name]['is_caught'] = pokedex[pokemon_name].get('is_caught', False)
 
             pokedex_file_name = os.path.basename(pokedex_file_path).rstrip(".json")
 
             if not local_only:
                 ref = db.reference(pokedex_file_name)
-
                 db_data = ref.get()
 
-                if not db_data:
-                    ref.update(pokedex)
-                else:
+                if db_data and isinstance(db_data, dict):
                     pokedex = db_data
+                else:
+                    for pokemon_info in pokedex.values():
+                        pokemon_info['is_caught'] = bool(pokemon_info.get('is_caught', False))
+                    ref.set(pokedex)
+            else:
+                for pokemon_info in pokedex.values():
+                    pokemon_info['is_caught'] = bool(pokemon_info.get('is_caught', False))
 
             create_pokedex_boxes()
             arrange_pokedex_boxes()
@@ -126,7 +149,7 @@ def open_pokedex_file():
 
             if not local_only:
                 if firebase_listener is not None:
-                    firebase_listener.close()
+                    threading.Thread(target=firebase_listener.close, daemon=True).start()
                     firebase_listener = None
 
                 firebase_listener = ref.listen(on_firebase_update)
@@ -148,12 +171,13 @@ def clear_squares_data():
 
 
 def clear_pokedex_data():
-    global pokedex, ref, firebase_listener, cred
+    global pokedex, ref, firebase_listener, cred, image_cache
+    image_cache = {}
     pokedex = {}
     cred = None
     ref = None
     if firebase_listener:
-        threading.Thread(target=firebase_listener.close(), daemon=True).start()
+        threading.Thread(target=firebase_listener.close, daemon=True).start()
         firebase_listener = None
 
     clear_squares_data()
@@ -226,16 +250,7 @@ def create_pokedex_boxes():
         image_path = None
 
         try:
-            image_path = get_asset_path(os.path.join("assets", "pokemon", f"{str(pokemon_name).lower()}.png"))
-            raw_img = Image.open(image_path).convert("RGBA")
-
-            # Generate bright vs darkened options natively
-            enhancer = ImageEnhance.Brightness(raw_img)
-            dark_raw_img = enhancer.enhance(0.3)
-
-            img_size = SQUARE_SIZE - 4
-            ctk_image = ctk.CTkImage(light_image=raw_img, dark_image=raw_img, size=(img_size, img_size))
-            ctk_image_dark = ctk.CTkImage(light_image=dark_raw_img, dark_image=dark_raw_img, size=(img_size, img_size))
+            ctk_image, ctk_image_dark = get_pokemon_images(pokemon_name)
 
             img_label = ctk.CTkLabel(
                 master=square,
