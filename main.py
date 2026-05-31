@@ -86,6 +86,9 @@ def open_database_creds():
                 title="Database URL Required"
             ).get_input()
 
+            if not re.match(r"https:\/\/[\w.-]+\.(?:firebasedatabase\.app|firebaseio\.com)\/?", database_url):
+                raise ValueError("Invalid Database URL")
+
             if database_url:
                 cred = credentials.Certificate(file_path)
                 firebase_admin.initialize_app(cred, {
@@ -106,7 +109,7 @@ def open_pokedex_file():
     if not cred:
         messagebox.showwarning(
             title="Local-Only Mode",
-            message="Since no database credentials file was loaded, program will use local-only mode!"
+            message="Since no database credentials file was loaded, program will use Local mode!"
         )
         local_only = True
     
@@ -171,20 +174,25 @@ def clear_squares_data():
 
 
 def clear_pokedex_data():
-    global pokedex, ref, firebase_listener, cred, image_cache
+    global pokedex, ref, image_cache
     image_cache = {}
     pokedex = {}
-    cred = None
     ref = None
-    if firebase_listener:
-        threading.Thread(target=firebase_listener.close, daemon=True).start()
-        firebase_listener = None
 
     clear_squares_data()
 
     tracker_container.pack_forget()
 
     printPokedex()
+
+
+def enter_local_mode():
+    global firebase_listener, cred, local_only
+    cred = None
+    local_only = True
+    if firebase_listener:
+        threading.Thread(target=firebase_listener.close, daemon=True).start()
+        firebase_listener = None
 
 
 def save_pokedex_data():
@@ -420,6 +428,7 @@ load_pokedex_menu = tk.Menu(
     relief="solid"               
 )
 load_pokedex_menu.add_command(label="Open Database Credentials File", command=open_database_creds)
+load_pokedex_menu.add_command(label="Enter Local Mode", command=enter_local_mode)
 load_pokedex_menu.add_separator()
 load_pokedex_menu.add_command(label="Open Pokedex JSON File", command=open_pokedex_file)
 load_pokedex_menu.add_command(label="Save Pokedex Data", command=save_pokedex_data)
