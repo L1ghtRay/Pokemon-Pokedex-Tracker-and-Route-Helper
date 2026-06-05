@@ -10,17 +10,144 @@ import threading
 
 SQUARE_SIZE = 30
 
-squares_cache = {}
-image_cache = {}
 pokedex = {}
+squares_cache = {}
+route = {}
+route_cache = {}
+route_squares_cache = {}
+route_pokemon_checkboxes = {}
+image_cache = {}
+cred = None
 ref = None
 firebase_listener = None
 local_only = False
-cred = None
+pokedex_file_path = None
+pokedex_file_name = None
+route_file_path = None
+route_file_name = None
+
+
+# --- General Functions ---
+
+def on_firebase_update(event):
+    global pokedex
+
+    path_parts = [p for p in event.path.strip('/').split('/') if p]
+
+    # --- HANDLE COLD DELETIONS FROM FIREBASE CONSOLE ---
+    if event.data is None:
+        if len(path_parts) == 1:
+            # Whole pokemon was deleted directly (e.g., event.path = '/Pikachu')
+            pokemon_name = path_parts[0]
+
+            # 1. Pop from local memory cache dictionary
+            pokedex.pop(pokemon_name, None)
+
+            # 2. Safely wipe the UI element and remove from layout tracking
+            if pokemon_name in squares_cache:
+                squares_cache[pokemon_name].destroy()
+                del squares_cache[pokemon_name]
+
+            # 3. Schedule a structural layout recalculation on the main thread
+            app.after(0, arrange_pokedex_boxes)
+
+        elif len(path_parts) == 2:
+            # A single interior attribute field was deleted (e.g., '/Pikachu/is_caught')
+            pokemon_name, field = path_parts
+            if pokemon_name in pokedex:
+                pokedex[pokemon_name].pop(field, None)
+                app.after(0, lambda: sync_squares_to_ui(pokemon_name))
+        return
+
+    target_id = None
+
+    # --- HANDLE NEW INSERTS AND VALUE CHANGES ---
+    if len(path_parts) == 0:
+        # Initial full snapshot: event.data = {full pokedex}
+        if isinstance(event.data, dict):
+            for pokemon_name, pokemon_data in event.data.items():
+                if pokemon_name in pokedex and isinstance(pokemon_data, dict):
+                    pokedex[pokemon_name].update(pokemon_data)
+            app.after(0, lambda: sync_squares_to_ui(None))
+
+    elif len(path_parts) == 1:
+        # Whole pokemon updated: event.path = '/Pikachu'
+        pokemon_name = path_parts[0]
+        if pokemon_name in pokedex and isinstance(event.data, dict):
+            pokedex[pokemon_name].update(event.data)
+            target_id = pokemon_name
+
+    elif len(path_parts) == 2:
+        # Single field updated: event.path = '/Pikachu/is_caught'
+        pokemon_name, field = path_parts
+        if pokemon_name in pokedex:
+            pokedex[pokemon_name][field] = event.data
+            target_id = pokemon_name
+
+    app.after(0, lambda: sync_squares_to_ui(target_id))
+
+
+def sync_squares_to_ui(target_id=None):
+    try:
+        # Update Left Tracker Squares
+        tracker_to_update = [target_id] if target_id else list(squares_cache.keys())
+        for pokemon in tracker_to_update:
+            if pokemon in squares_cache and pokemon in pokedex:
+                sq = squares_cache[pokemon]
+                is_caught = bool(pokedex[pokemon].get('is_caught', False))
+                expected_color = "#494949" if is_caught else pokedex[pokemon].get('color')
+                
+                # Only redraw if something actually changed
+                if getattr(sq, 'is_caught', None) != is_caught or sq.cget("fg_color") != expected_color:
+                    sq.configure(fg_color=expected_color)
+                    sq.is_caught = is_caught
+                    print(f"Syncing Tracker: {pokemon}")
+
+        # Update Right Route Squares
+        route_sq_to_update = [target_id] if target_id else list(route_squares_cache.keys())
+        for pokemon in route_sq_to_update:
+            if pokemon in route_squares_cache and pokemon in pokedex:
+                is_caught = bool(pokedex[pokemon].get('is_caught', False))
+                expected_color = "#494949" if is_caught else pokedex[pokemon].get('color')
+                
+                for sq in route_squares_cache[pokemon]:
+                    if getattr(sq, 'is_caught', None) != is_caught or sq.cget("fg_color") != expected_color:
+                        sq.configure(fg_color=expected_color)
+                        sq.is_caught = is_caught
+                        print(f"Syncing Route: {pokemon}")
+
+        # Update Right Route Task Checkboxes
+        route_cb_to_update = [target_id] if target_id else list(route_pokemon_checkboxes.keys())
+        for pokemon in route_cb_to_update:
+            if pokemon in route_pokemon_checkboxes and pokemon in pokedex:
+                is_caught = bool(pokedex[pokemon].get('is_caught', False))
+                
+                for cb, var in route_pokemon_checkboxes[pokemon]:
+                    # Only auto-check; never auto-uncheck (unchecking has no effect on pokemon)
+                    if is_caught and not var.get():
+                        var.set(True)
+                        print(f"Syncing Route Checkbox: {pokemon}")
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+
+def on_middle_click_square(event):
+    widget = event.widget
+    while widget is not None:
+        if hasattr(widget, 'pokemon_id'):
+            break
+        widget = getattr(widget, 'master', None)
+    if widget is not None:
+        open_pokemon_editor(widget.pokemon_id)
+
+
+def on_middle_click_empty(event):
+    open_pokemon_editor()
 
 
 def get_asset_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
+    # Get absolute path to resource, works for dev and for PyInstaller
     try:
         base_path = sys._MEIPASS
     except AttributeError:
@@ -34,76 +161,9 @@ def on_closing():
     os._exit(0)
 
 
-def show_tracker_menu(event):
-    load_pokedex_menu.post(event.x_root, event.y_root)
+# --- Tracker Functions ---
 
-
-def printPokedex():
-    if not pokedex:
-        print(pokedex)
-    for pokemon in pokedex.items():
-        print(pokemon)
-
-
-def get_pokemon_images(pokemon_name):
-    if pokemon_name in image_cache:
-        return image_cache[pokemon_name]
-    
-    image_path = get_asset_path(os.path.join("assets", "pokemon", f"{pokemon_name.lower()}.png"))
-    raw_img = Image.open(image_path).convert("RGBA")
-    
-    enhancer = ImageEnhance.Brightness(raw_img)
-    dark_raw_img = enhancer.enhance(0.3)
-    
-    img_size = SQUARE_SIZE - 4
-    normal = ctk.CTkImage(light_image=raw_img, dark_image=raw_img, size=(img_size, img_size))
-    dark = ctk.CTkImage(light_image=dark_raw_img, dark_image=dark_raw_img, size=(img_size, img_size))
-    
-    image_cache[pokemon_name] = (normal, dark)
-    return normal, dark
-
-
-def open_database_creds():
-    global ref, local_only, cred
-    
-    file_path = filedialog.askopenfilename(
-        title="Select Database Credentials JSON File",
-        filetypes=[("JSON Files", "*.json")]
-    )
-
-    if firebase_admin._apps:
-        print("Found an existing Firebase app connection. Resetting...")
-
-        old_app = firebase_admin.get_app()
-
-        firebase_admin.delete_app(old_app)
-        print("Previous connection terminated successfully.")
-
-    if file_path:
-        try:
-            database_url = ctk.CTkInputDialog(
-                text="Enter Database URL:",
-                title="Database URL Required"
-            ).get_input()
-
-            if not re.match(r"https:\/\/[\w.-]+\.(?:firebasedatabase\.app|firebaseio\.com)\/?", database_url):
-                raise ValueError("Invalid Database URL")
-
-            if database_url:
-                cred = credentials.Certificate(file_path)
-                firebase_admin.initialize_app(cred, {
-                    "databaseURL": database_url
-                })
-                local_only = False
-
-        except Exception as e:
-            messagebox.showerror(
-                title="Error", 
-                message=f"Database error: {e}"
-            )
-
-
-def open_pokedex_file():
+def open_tracker_file():
     global pokedex, ref, firebase_listener, local_only, pokedex_file_path, pokedex_file_name
 
     if not cred:
@@ -164,38 +224,47 @@ def open_pokedex_file():
             )
 
 
-def clear_squares_data():
-    global squares_cache
+def open_database_creds():
+    global ref, local_only, cred
     
-    for square in squares_cache.values():
-        square.destroy()
+    file_path = filedialog.askopenfilename(
+        title="Select Database Credentials JSON File",
+        filetypes=[("JSON Files", "*.json")]
+    )
 
-    squares_cache = {}
+    if firebase_admin._apps:
+        print("Found an existing Firebase app connection. Resetting...")
+
+        old_app = firebase_admin.get_app()
+
+        firebase_admin.delete_app(old_app)
+        print("Previous connection terminated successfully.")
+
+    if file_path:
+        try:
+            database_url = ctk.CTkInputDialog(
+                text="Enter Database URL:",
+                title="Database URL Required"
+            ).get_input()
+
+            if not re.match(r"https:\/\/[\w.-]+\.(?:firebasedatabase\.app|firebaseio\.com)\/?", database_url):
+                raise ValueError("Invalid Database URL")
+
+            if database_url:
+                cred = credentials.Certificate(file_path)
+                firebase_admin.initialize_app(cred, {
+                    "databaseURL": database_url
+                })
+                local_only = False
+
+        except Exception as e:
+            messagebox.showerror(
+                title="Error", 
+                message=f"Database error: {e}"
+            )
 
 
-def clear_pokedex_data():
-    global pokedex, ref, image_cache
-    image_cache = {}
-    pokedex = {}
-    ref = None
-
-    clear_squares_data()
-
-    tracker_container.pack_forget()
-
-    printPokedex()
-
-
-def enter_local_mode():
-    global firebase_listener, cred, local_only
-    cred = None
-    local_only = True
-    if firebase_listener:
-        threading.Thread(target=firebase_listener.close, daemon=True).start()
-        firebase_listener = None
-
-
-def save_pokedex_data():
+def save_tracker_data():
     global pokedex
 
     if not pokedex:
@@ -235,6 +304,11 @@ def create_pokedex_boxes():
     if not pokedex: return
 
     clear_squares_data()
+
+    for widget in tracker_frame.winfo_children():
+        if isinstance(widget, ctk.CTkLabel):
+            widget.destroy()
+
     tracker_container.pack(fill="both", expand=True, padx=5, pady=5)
 
     sorted_pokedex = sorted(pokedex.items(), key=lambda x: x[1].get('num', 0))
@@ -340,92 +414,6 @@ def toggle_caught(event):
                 ref.child(pokemon_id).update({"is_caught": new_caught_state})
             except Exception as e:
                 print(f"Failed to transmit data to Firebase: {e}")
-
-
-def sync_squares_to_ui(target_id=None):
-    squares_to_update = [target_id] if target_id else squares_cache.keys()
-
-    try:
-        for pokemon_name in squares_to_update:
-            if pokemon_name not in squares_cache or pokemon_name not in pokedex:
-                raise KeyError("p_id not in square cache or not in pokedex")
-            
-            square = squares_cache[pokemon_name]
-            is_caught = bool(pokedex[pokemon_name].get('is_caught', False)) # Cast to bool — Firebase can return 0/1 instead of False/True
-
-            # 1. Determine what the color *should* be
-            expected_color = "#494949" if is_caught else pokedex[pokemon_name].get('color', '#9C9C9C')
-            
-            # 2. OPTIMIZATION: Only update if the caught state or color has actually changed
-            current_color = square.cget("fg_color")
-            if getattr(square, 'is_caught', None) == is_caught and current_color == expected_color:
-                continue # Skip redrawing if nothing changed
-                
-            # 3. Apply changes only when necessary
-            print(f"Syncing UI for {pokemon_name}: caught={is_caught}, color={expected_color}")
-            square.configure(fg_color=expected_color)
-            square.is_caught = is_caught
-
-    except Exception as e:
-        print(f"Error: {e}")
-
-
-def on_firebase_update(event):
-    global pokedex
-
-    path_parts = [p for p in event.path.strip('/').split('/') if p]
-
-    # --- HANDLE COLD DELETIONS FROM FIREBASE CONSOLE ---
-    if event.data is None:
-        if len(path_parts) == 1:
-            # Whole pokemon was deleted directly (e.g., event.path = '/Pikachu')
-            pokemon_name = path_parts[0]
-
-            # 1. Pop from local memory cache dictionary
-            pokedex.pop(pokemon_name, None)
-
-            # 2. Safely wipe the UI element and remove from layout tracking
-            if pokemon_name in squares_cache:
-                squares_cache[pokemon_name].destroy()
-                del squares_cache[pokemon_name]
-
-            # 3. Schedule a structural layout recalculation on the main thread
-            app.after(0, arrange_pokedex_boxes)
-
-        elif len(path_parts) == 2:
-            # A single interior attribute field was deleted (e.g., '/Pikachu/is_caught')
-            pokemon_name, field = path_parts
-            if pokemon_name in pokedex:
-                pokedex[pokemon_name].pop(field, None)
-                app.after(0, lambda: sync_squares_to_ui(pokemon_name))
-        return
-
-    target_id = None
-
-    # --- HANDLE NEW INSERTS AND VALUE CHANGES ---
-    if len(path_parts) == 0:
-        # Initial full snapshot: event.data = {full pokedex}
-        if isinstance(event.data, dict):
-            for pokemon_name, pokemon_data in event.data.items():
-                if pokemon_name in pokedex and isinstance(pokemon_data, dict):
-                    pokedex[pokemon_name].update(pokemon_data)
-            app.after(0, lambda: sync_squares_to_ui(None))
-
-    elif len(path_parts) == 1:
-        # Whole pokemon updated: event.path = '/Pikachu'
-        pokemon_name = path_parts[0]
-        if pokemon_name in pokedex and isinstance(event.data, dict):
-            pokedex[pokemon_name].update(event.data)
-            target_id = pokemon_name
-
-    elif len(path_parts) == 2:
-        # Single field updated: event.path = '/Pikachu/is_caught'
-        pokemon_name, field = path_parts
-        if pokemon_name in pokedex:
-            pokedex[pokemon_name][field] = event.data
-            target_id = pokemon_name
-
-    app.after(0, lambda: sync_squares_to_ui(target_id))
 
 
 def open_pokemon_editor(pokemon_name=None):
@@ -686,20 +674,313 @@ def open_pokemon_editor(pokemon_name=None):
     ctk.CTkButton(btn_row, text="Cancel", fg_color="#555555", hover_color="#333333", command=editor.destroy).pack(side="left", expand=True, fill="x")
 
 
-def on_middle_click_square(event):
-    widget = event.widget
-    while widget is not None:
-        if hasattr(widget, 'pokemon_id'):
-            break
-        widget = getattr(widget, 'master', None)
-    if widget is not None:
-        open_pokemon_editor(widget.pokemon_id)
+def get_pokemon_images(pokemon_name):
+    if pokemon_name in image_cache:
+        return image_cache[pokemon_name]
+    
+    image_path = get_asset_path(os.path.join("assets", "pokemon", f"{pokemon_name.lower()}.png"))
+    raw_img = Image.open(image_path).convert("RGBA")
+    
+    enhancer = ImageEnhance.Brightness(raw_img)
+    dark_raw_img = enhancer.enhance(0.3)
+    
+    img_size = SQUARE_SIZE - 4
+    normal = ctk.CTkImage(light_image=raw_img, dark_image=raw_img, size=(img_size, img_size))
+    dark = ctk.CTkImage(light_image=dark_raw_img, dark_image=dark_raw_img, size=(img_size, img_size))
+    
+    image_cache[pokemon_name] = (normal, dark)
+    return normal, dark
 
 
-def on_middle_click_empty(event):
-    open_pokemon_editor()
+def clear_squares_data():
+    global squares_cache
+    
+    for square in squares_cache.values():
+        square.destroy()
+
+    squares_cache = {}
 
 
+def clear_tracker_data():
+    global pokedex, ref, pokedex_file_name, pokedex_file_path
+    pokedex = {}
+    ref = None
+    pokedex_file_path = None
+    pokedex_file_name = None
+
+    clear_squares_data()
+
+    tracker_container.pack_forget()
+
+    show_tracker_placeholder()
+
+    printPokedex()
+
+
+def enter_local_mode():
+    global firebase_listener, cred, local_only
+    cred = None
+    local_only = True
+    if firebase_listener:
+        threading.Thread(target=firebase_listener.close, daemon=True).start()
+        firebase_listener = None
+
+
+def show_tracker_menu(event):
+    load_tracker_menu.post(event.x_root, event.y_root)
+
+
+def show_tracker_placeholder():
+    """Show a hint label when no route is loaded."""
+    placeholder = ctk.CTkLabel(
+        tracker_frame,
+        text="1. Right-click → Open Database Credentials File → Enter Database URL  (Only for multiplayer sync)\n2. Right-Click → Open Pokedex JSON File",
+        text_color="#383838",
+        font=("Segoe UI", 11),
+        anchor="center"
+    )
+    placeholder.pack(padx=20, pady=20, expand=True)
+
+
+def printPokedex():
+    if not pokedex:
+        print(pokedex)
+    for pokemon in pokedex.items():
+        print(pokemon)
+
+
+# --- Router Functions ---
+
+def open_routing_file():
+    global route, route_file_path, route_file_name
+
+    route_file_path = filedialog.askopenfilename(
+        title="Select Route JSON Data",
+        filetypes=[("JSON Files", "*.json")]
+    )
+
+    if route_file_path:
+        try:
+            with open(route_file_path, 'r') as f:
+                route = json.load(f)
+
+            route_file_name = os.path.basename(route_file_path).rstrip(".json")
+
+            create_routing_sections()
+
+        except Exception as e:
+            messagebox.showerror(
+                title="Routing File Error",
+                message=f"Error: {e}"
+            )
+
+
+def save_routing_data():
+    return
+
+
+def create_routing_sections():
+    global route_cache, route_squares_cache, route_pokemon_checkboxes
+
+    if not route: return
+
+    clear_route_sections()
+
+    for widget in router_frame.winfo_children():
+        if isinstance(widget, ctk.CTkLabel):
+            widget.destroy()
+
+    router_container.pack(fill="both", expand=True, padx=5, pady=5)
+
+    for section_no, section_info in route.items():
+        section = ctk.CTkFrame(
+            router_container,
+            corner_radius=0,
+            border_color="#727272",
+            fg_color="#444444"
+        )
+        section.pack(fill="x", padx=10, pady=(0, 15))
+        section.bind("<Button-3>", show_router_menu)
+        # section.bind("<Button-2>", on_middle_click_square)
+
+        loc_name = section_info.get('location', f"Section {section_no}")
+        header = ctk.CTkLabel(
+            section,
+            text=loc_name,
+            font=("Segoe UI", 16, "bold"),
+            text_color="#ffffff"
+        )
+        header.pack(anchor="w", padx=15, pady=(8, 0))
+
+        content_frame = ctk.CTkFrame(section, fg_color="transparent")
+        content_frame.pack(fill="x", expand=True, padx=15, pady=(5, 15))
+
+        tasks = section_info.get("tasks", {})
+        explicit_pokemon = section_info.get("pokemon", [])
+
+        task_pokemon = [val[1] for val in tasks.values() if isinstance(val, list)]
+        
+        all_pokemon_in_section = list(dict.fromkeys(explicit_pokemon + task_pokemon))
+        has_pokemon = len(all_pokemon_in_section) > 0
+
+        task_frame = ctk.CTkFrame(
+            content_frame,
+            fg_color="transparent"
+        )
+        task_frame.pack(side="left", fill="both", expand=True)
+
+        for task_no, task_info in tasks.items():
+            is_linked = isinstance(task_info, list)
+            task_text = task_info[0] if is_linked else task_info
+            linked_pokemon = task_info[1] if is_linked else None
+
+            var = tk.BooleanVar(value=False)
+            
+            # If the task is linked to a Pokemon, fetch its initial catch state
+            if linked_pokemon and linked_pokemon in pokedex:
+                var.set(pokedex[linked_pokemon].get('is_caught', False))
+
+            cb = ctk.CTkCheckBox(
+                task_frame, 
+                text=task_text, 
+                variable=var,
+                font=("Segoe UI", 13),
+                checkbox_width=20,
+                checkbox_height=20
+            )
+            cb.pack(anchor="w", pady=4)
+
+            # If linked, bind the click command to update the global database
+            if linked_pokemon:
+                if linked_pokemon not in route_pokemon_checkboxes:
+                    route_pokemon_checkboxes[linked_pokemon] = []
+                route_pokemon_checkboxes[linked_pokemon].append((cb, var))
+
+                # Use a closure to capture the correct pokemon ID and Var
+                cb.configure(command=lambda p=linked_pokemon, v=var: toggle_caught_from_task(p, v.get()))
+
+        # --- RIGHT SIDE: POKEMON BOXES ---
+        if has_pokemon:
+            # Add a subtle vertical line to split the sections
+            separator = ctk.CTkFrame(content_frame, width=2, height=0, fg_color="#555555")
+            separator.pack(side="left", fill="y", padx=15)
+
+            pokemon_frame = ctk.CTkFrame(content_frame, fg_color="transparent")
+            pokemon_frame.pack(side="right", fill="y")
+            
+            # Create a localized 3-column grid for Pokemon in this specific section
+            col, row = 0, 0
+            MAX_COLS = 3 
+            
+            for pk_name in all_pokemon_in_section:
+                # Get info from pokedex, or fallback to gray if not loaded
+                pokemon_info = pokedex.get(pk_name, {"color": "#9C9C9C", "is_caught": False})
+
+                square = ctk.CTkFrame(pokemon_frame, corner_radius=0, width=SQUARE_SIZE, height=SQUARE_SIZE)
+                square.grid_propagate(False)
+                square.pack_propagate(False)
+                square.grid(row=row, column=col, padx=2, pady=2)
+                
+                col += 1
+                if col >= MAX_COLS:
+                    col = 0
+                    row += 1
+
+                square.is_caught = pokemon_info.get('is_caught', False)
+                square.pokemon_id = pk_name
+                square.configure(fg_color=pokemon_info.get('color', '#9C9C9C') if not square.is_caught else "#494949")
+
+                # Apply Bindings
+                square.bind("<Button-1>", toggle_caught)
+                square.bind("<Button-2>", on_middle_click_square)
+                
+                # Fetch and render Image
+                try:
+                    ctk_image, _ = get_pokemon_images(pk_name)
+                    img_label = ctk.CTkLabel(square, image=ctk_image, text="")
+                    img_label.pack(expand=True, fill="both")
+                    img_label.bind("<Button-1>", toggle_caught)
+                    img_label.bind("<Button-2>", on_middle_click_square)
+                except Exception:
+                    lbl = ctk.CTkLabel(square, text=str(pokemon_info.get('num', '?')), text_color="#FFF", font=("Segoe UI", 10, "bold"))
+                    lbl.pack(expand=True, fill="both")
+                    lbl.bind("<Button-1>", toggle_caught)
+                    lbl.bind("<Button-2>", on_middle_click_square)
+                
+                # Register widget to cache for dynamic updating
+                if pk_name not in route_squares_cache:
+                    route_squares_cache[pk_name] = []
+                route_squares_cache[pk_name].append(square)
+
+        route_cache[section_no] = section
+
+
+def toggle_caught_from_task(pokemon_id, new_caught_state):
+    """Triggered specifically when a Route task checkbox tied to a Pokemon is clicked."""
+    global pokedex
+    if pokemon_id in pokedex:
+        # Prevent infinite loops if UI is just syncing
+        if pokedex[pokemon_id].get('is_caught', False) == new_caught_state:
+            return
+
+        pokedex[pokemon_id]['is_caught'] = new_caught_state
+
+        if not local_only and ref is not None:
+            try:
+                ref.child(pokemon_id).update({"is_caught": new_caught_state})
+            except Exception as e:
+                print(f"Firebase sync error: {e}")
+
+        # Force UI update across the whole app
+        sync_squares_to_ui(pokemon_id)
+
+
+def reset_all_tasks():
+    return
+
+
+def clear_route_sections():
+    global route_cache, route_squares_cache, route_pokemon_checkboxes
+
+    for section in route_cache.values():
+        section.destroy()
+
+    route_cache = {}
+    route_squares_cache = {}
+    route_pokemon_checkboxes = {}
+
+
+def clear_routing_data():
+    global route, route_file_path, route_file_name
+
+    clear_route_sections()
+
+    route = {}
+    route_file_path = None
+    route_file_name = None
+
+    router_container.pack_forget()
+
+    show_route_placeholder()
+
+
+def show_router_menu(event):
+    load_router_menu.post(event.x_root, event.y_root)
+
+
+def show_route_placeholder():
+    """Show a hint label when no route is loaded."""
+    placeholder = ctk.CTkLabel(
+        router_frame,
+        text="Right-click → Load Route File",
+        text_color="#666666",
+        font=("Segoe UI", 11),
+        anchor="center"
+    )
+    placeholder.pack(padx=20, pady=20, expand=True)
+
+
+# --- Main App Code ---
 
 app = ctk.CTk()
 app.title("Pokemon Route Helper")
@@ -714,14 +995,21 @@ app.grid_columnconfigure(0, weight=1)
 
 tracker_frame = ctk.CTkFrame(paned_window, fg_color="#666666", corner_radius=0)
 paned_window.add(tracker_frame, stretch="never")
-
-route_frame = ctk.CTkFrame(paned_window, fg_color="#383838", corner_radius=0)
-paned_window.add(route_frame, stretch="always")
-
 tracker_container = ctk.CTkScrollableFrame(tracker_frame, fg_color="transparent", corner_radius=0)
 tracker_container._parent_frame.bind("<Configure>", arrange_pokedex_boxes)
 
-load_pokedex_menu = tk.Menu(
+router_frame = ctk.CTkFrame(paned_window, fg_color="#383838", corner_radius=0)
+paned_window.add(router_frame, stretch="always")
+router_container = ctk.CTkScrollableFrame(router_frame, fg_color="transparent", corner_radius=0)
+# router_container._parent_frame.bind("<Configure>", arrange_route_sections)
+
+show_tracker_placeholder()
+show_route_placeholder()
+
+
+# --- Tracker Menu ---
+
+load_tracker_menu = tk.Menu(
     app, 
     tearoff=0, 
     bg="#f2f2f2",                
@@ -732,20 +1020,47 @@ load_pokedex_menu = tk.Menu(
     bd=1,                        
     relief="solid"               
 )
-load_pokedex_menu.add_command(label="Open Database Credentials File", command=open_database_creds)
-load_pokedex_menu.add_command(label="Enter Local Mode", command=enter_local_mode)
-load_pokedex_menu.add_separator()
-load_pokedex_menu.add_command(label="Open Pokedex JSON File", command=open_pokedex_file)
-load_pokedex_menu.add_command(label="Save Pokedex Data", command=save_pokedex_data)
-load_pokedex_menu.add_command(label="Clear Pokedex Data", command=clear_pokedex_data)
-load_pokedex_menu.add_separator()
-load_pokedex_menu.add_command(label="Cancel")
+load_tracker_menu.add_command(label="Open Database Credentials File", command=open_database_creds)
+load_tracker_menu.add_command(label="Enter Local Mode", command=enter_local_mode)
+load_tracker_menu.add_separator()
+load_tracker_menu.add_command(label="Open Pokedex File", command=open_tracker_file)
+load_tracker_menu.add_command(label="Save Pokedex Data", command=save_tracker_data)
+load_tracker_menu.add_command(label="Clear Pokedex Data", command=clear_tracker_data)
+load_tracker_menu.add_separator()
+load_tracker_menu.add_command(label="Cancel")
 
+
+# --- Router Menu ---
+
+load_router_menu = tk.Menu(
+    app, 
+    tearoff=0, 
+    bg="#f2f2f2",                
+    fg="#000000",                
+    activebackground="#e5f1fb",  
+    activeforeground="#000000",  
+    font=("Segoe UI", 10),
+    bd=1,                        
+    relief="solid"               
+)
+load_router_menu.add_command(label="Open Routing File", command=open_routing_file)
+load_router_menu.add_command(label="Save Routing Data", command=save_routing_data)
+load_router_menu.add_command(label="Reset All Tasks", command=reset_all_tasks)
+load_router_menu.add_command(label="Clear Routing Data", command=clear_routing_data)
+
+
+# --- Bindings ---
 
 tracker_frame.bind("<Button-3>", show_tracker_menu)
 tracker_frame.bind("<Button-2>", on_middle_click_empty)
 tracker_container.bind("<Button-3>", show_tracker_menu)
 tracker_container.bind("<Button-2>", on_middle_click_empty)
+
+router_frame.bind("<Button-3>", show_router_menu)
+router_frame.bind("<Button-2>", on_middle_click_empty)
+router_container.bind("<Button-3>", show_router_menu)
+router_container.bind("<Button-2>", on_middle_click_empty)
+
 app.protocol("WM_DELETE_WINDOW", on_closing)
 
 
