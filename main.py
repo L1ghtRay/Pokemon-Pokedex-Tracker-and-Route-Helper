@@ -1157,7 +1157,29 @@ def toggle_caught_from_task(pokemon_id, var):
 
 
 def reset_all_tasks():
-    return
+    global route
+
+    if not route:
+        messagebox.showinfo(
+            title="Info", 
+            message="No route data loaded.", 
+            parent=app
+        )
+        return
+
+    # Add a safety confirmation prompt
+    if not messagebox.askyesno("Confirm Reset", "Are you sure you want to reset all route tasks to unchecked?", parent=app):
+        return
+
+    # Iterate through all sections and tasks, setting 'checked' to False
+    for section_no, section_data in route.items():
+        if "tasks" in section_data:
+            for task_no, task_data in section_data["tasks"].items():
+                task_data["checked"] = False
+                
+    # Refresh the UI to reflect the changes
+    create_routing_sections()
+    print("All tasks have been reset.")
 
 
 def clear_route_sections():
