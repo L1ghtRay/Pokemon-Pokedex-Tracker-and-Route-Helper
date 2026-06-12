@@ -771,7 +771,11 @@ def open_routing_file():
     if route_file_path:
         try:
             with open(route_file_path, 'r') as f:
-                route = json.load(f)
+                content = f.read().strip()
+                if not content:
+                    route = {}
+                else:
+                    route = json.loads(content)
 
             route_file_name = os.path.basename(route_file_path).rstrip(".json")
 
@@ -820,8 +824,6 @@ def save_routing_data():
 
 def create_routing_sections():
     global route_cache, route_squares_cache, route_pokemon_checkboxes
-
-    if not route: return
 
     clear_route_sections()
 
@@ -1069,7 +1071,7 @@ def open_section_editor(section_no=None):
                 }
             else:
                 parsed_tasks[str(idx)] = {
-                    "text": task_text,
+                    "text": line,
                     "checked": False
                 }
 
@@ -1202,15 +1204,16 @@ def clear_route_sections():
 def clear_routing_data():
     global route, route_file_path, route_file_name
 
-    clear_route_sections()
+    if route_file_path:
+        clear_route_sections()
 
-    route = {}
-    route_file_path = None
-    route_file_name = None
+        route = {}
+        route_file_path = None
+        route_file_name = None
 
-    router_container.pack_forget()
+        router_container.pack_forget()
 
-    show_route_placeholder()
+        show_route_placeholder()
 
 
 def show_router_menu(event):
@@ -1317,6 +1320,8 @@ router_frame.bind("<Button-3>", show_router_menu)
 router_frame.bind("<Button-2>", on_middle_click_router)
 router_container.bind("<Button-3>", show_router_menu)
 router_container.bind("<Button-2>", on_middle_click_router)
+router_container._parent_canvas.bind("<Button-2>", on_middle_click_router)
+router_container._parent_canvas.bind("<Button-3>", show_router_menu)
 
 app.protocol("WM_DELETE_WINDOW", on_closing)
 
