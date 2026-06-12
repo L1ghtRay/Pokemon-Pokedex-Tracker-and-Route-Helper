@@ -1,0 +1,35 @@
+{
+    "1": {
+        "location": "101",
+        "pokemon": [],
+        "tasks": {
+            "1": {
+                "text": "Get starter pokemon",
+                "checked": false,
+                "pokemon": "Torchic"
+            },
+            "2": {
+                "text": "Get potions",
+                "checked": false
+            }
+        }
+    },
+    "2": {
+        "location": "102",
+        "pokemon": [
+            "Poochyena",
+            "Zigzagoon"
+        ],
+        "tasks": {
+            "1": {
+                "text": "Get a zigzagoon",
+                "checked": false,
+                "pokemon": "Zigzagoon"
+            },
+            "2": {
+                "text": "Put zigzagoon in PC",
+                "checked": false
+            }
+        }
+    }
+}
