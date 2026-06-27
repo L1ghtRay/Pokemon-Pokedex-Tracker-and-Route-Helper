@@ -51,9 +51,9 @@ Program that allows one to create routes and track caught pokemon for speedrunni
 6. Now you can open then pokedex file similar to the offline mode setup
 > Note: The Database can host multiple pokedexes at once. The way to determine the pokedex you're using is based on the name of the pokedex file you have loaded
 
-## Setup (Routing Section)
+## Setup (Route Helper)
 
-The right-side section of the program can be used to load a custom routing file (routing files cannot be synced across players, cause why would it need to be)
+The right-side section of the program can be used as a Route Helper (routing files cannot be synced across players, cause why would it need to be)
 
 1. To open a routing file: Right-click the right-side section, then click "Open Routing File"
 2. To edit a route section: Middle-click on the section
