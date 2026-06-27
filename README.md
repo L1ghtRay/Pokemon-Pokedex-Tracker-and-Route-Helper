@@ -63,3 +63,7 @@ The right-side section of the program can be used to load a custom routing file 
 **IMPORTANT**: No live database sync, so no autosave, remember to save the routing file manually (Right-Click -> Save Routing File)
 
 > Note: For now there is no way to reorder a route in the program, you can do that by opening the .json routing file and then changing the order number of each section
+
+---
+
+> If you have any issues... well create an issue here... or hit me up on discord @ ```llghtray```
