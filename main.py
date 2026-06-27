@@ -175,13 +175,17 @@ def open_tracker_file():
 
     pokedex_file_path = filedialog.askopenfilename(
         title="Select Pokedex JSON Data",
-        filetypes=[("JSON Files", "*.json")]
+        filetypes=[("JSON Files", "*.json"),("All Files", "*.*")]
     )
 
     if pokedex_file_path:
         try:
             with open(pokedex_file_path, 'r') as f:
-                pokedex = json.load(f)
+                content = f.read().strip()
+                if not content:
+                    pokedex = {}
+                else:
+                    pokedex = json.loads(content)
 
             pokedex_file_name = os.path.basename(pokedex_file_path).rstrip(".json")
 
@@ -297,8 +301,6 @@ def save_tracker_data():
 
 def create_pokedex_boxes():
     global squares_cache
-
-    if not pokedex: return
 
     if not counter_bar.winfo_manager(): # Only pack if it isn't already visible
         prior_widgets = [w for w in tracker_frame.winfo_children() if w != counter_bar and w.winfo_manager() == 'pack']
@@ -425,13 +427,13 @@ def toggle_caught(event):
 
 def open_pokemon_editor(pokemon_name=None):
     is_edit = pokemon_name is not None
-    if not pokedex and not is_edit:
-        messagebox.showwarning(
-            title="Warning", 
-            message="Load a Pokédex file first!", 
-            parent=app
-        )
-        return
+    # if not pokedex and not is_edit:
+    #     messagebox.showwarning(
+    #         title="Warning", 
+    #         message="Load a Pokédex file first!", 
+    #         parent=app
+    #     )
+    #     return
 
     if is_edit:
         data = pokedex[pokemon_name]
@@ -827,7 +829,7 @@ def save_routing_data():
 
 
 def create_routing_sections():
-    global route_cache, route_squares_cache, route_pokemon_checkboxes
+    global route, route_cache, route_squares_cache, route_pokemon_checkboxes
 
     clear_route_sections()
 
@@ -836,6 +838,8 @@ def create_routing_sections():
             widget.destroy()
 
     router_container.pack(fill="both", expand=True, padx=5, pady=5)
+
+    route = dict(sorted(route.items(), key=lambda x: int(x[0])))
 
     for section_no, section_info in route.items():
         section = ctk.CTkFrame(
@@ -1256,7 +1260,7 @@ app.grid_columnconfigure(0, weight=1)
 
 tracker_frame = ctk.CTkFrame(paned_window, fg_color="#666666", corner_radius=0)
 paned_window.add(tracker_frame, stretch="never")
-tracker_container = ctk.CTkScrollableFrame(tracker_frame, fg_color="transparent", corner_radius=0)
+tracker_container = ctk.CTkScrollableFrame(tracker_frame, fg_color="#ffff00", corner_radius=0)
 tracker_container._parent_frame.bind("<Configure>", arrange_pokedex_boxes)
 
 router_frame = ctk.CTkFrame(paned_window, fg_color="#383838", corner_radius=0)
@@ -1319,6 +1323,12 @@ tracker_frame.bind("<Button-3>", show_tracker_menu)
 tracker_frame.bind("<Button-2>", on_middle_click_tracker)
 tracker_container.bind("<Button-3>", show_tracker_menu)
 tracker_container.bind("<Button-2>", on_middle_click_tracker)
+tracker_container._parent_canvas.bind("<Button-2>", on_middle_click_tracker)
+tracker_container._parent_canvas.bind("<Button-3>", show_tracker_menu)
+counter_bar.bind("<Button-3>", show_tracker_menu)
+counter_bar.bind("<Button-2>", on_middle_click_tracker)
+counter_label.bind("<Button-3>", show_tracker_menu)
+counter_label.bind("<Button-2>", on_middle_click_tracker)
 
 router_frame.bind("<Button-3>", show_router_menu)
 router_frame.bind("<Button-2>", on_middle_click_router)
