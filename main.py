@@ -297,7 +297,7 @@ def create_pokedex_boxes():
     if not pokedex: return
 
     if not counter_bar.winfo_manager(): # Only pack if it isn't already visible
-        prior_widgets = [w for w in router_frame.winfo_children() if w != counter_bar and w.winfo_manager() == 'pack']
+        prior_widgets = [w for w in tracker_frame.winfo_children() if w != counter_bar and w.winfo_manager() == 'pack']
         if prior_widgets:
             # Force counter_bar to the absolute top of the packing stack
             counter_bar.pack(side="top", fill="x", before=prior_widgets[0])
@@ -1259,7 +1259,7 @@ router_frame = ctk.CTkFrame(paned_window, fg_color="#383838", corner_radius=0)
 paned_window.add(router_frame, stretch="always")
 router_container = ctk.CTkScrollableFrame(router_frame, fg_color="transparent", corner_radius=0)
 
-counter_bar = ctk.CTkFrame(router_frame, fg_color="#5b5b5b", corner_radius=0)
+counter_bar = ctk.CTkFrame(tracker_frame, fg_color="#5b5b5b", corner_radius=0)
 counter_label = ctk.CTkLabel(counter_bar, text="", text_color="#CFCF00", font=("Segoe UI", 14, "bold"), anchor="center")
 counter_label.pack(anchor="center", padx=3, pady=2)
 
