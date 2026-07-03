@@ -904,7 +904,7 @@ def create_routing_sections():
         task_frame.pack(side="left", fill="both", expand=True)
 
         for task_no, task_info in tasks.items():
-            task_text = task_info.get("text", "---")
+            task_text = task_info.get("text", "---").encode('utf-8').decode('unicode_escape')
             linked_pokemon = task_info.get("pokemon")
 
             var = tk.BooleanVar(value=task_info.get("checked"))
