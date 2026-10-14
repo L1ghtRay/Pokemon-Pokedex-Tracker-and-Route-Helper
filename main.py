@@ -171,6 +171,19 @@ def on_closing():
     os._exit(0)
 
 
+def get_current_games():
+    default_games = ["default"]
+    if not pokedex:
+        return default_games
+    
+    games = set()
+    for pokemon_info in pokedex.values():
+        locations = pokemon_info.get("locations", {})
+        if isinstance(locations, dict):
+            games.update(locations.keys())
+    return list(games) if games else default_games
+
+
 # --- Tracker Functions ---
 
 def open_tracker_file():
@@ -197,7 +210,7 @@ def open_tracker_file():
 
     if pokedex_file_path:
         try:
-            with open(pokedex_file_path, 'r') as f:
+            with open(pokedex_file_path, 'r', encoding='utf-8') as f:
                 content = f.read().strip()
                 if not content:
                     pokedex = {}
@@ -274,6 +287,8 @@ def open_database_creds():
                     "databaseURL": database_url
                 })
                 local_only = False
+
+            print("Successfully Connected to Database.")
 
         except Exception as e:
             messagebox.showerror(
@@ -452,14 +467,20 @@ def open_pokemon_editor(pokemon_name=None):
     #     )
     #     return
 
+    active_games = get_current_games()
+
     if is_edit:
         data = pokedex[pokemon_name]
+        poke_locs = data.get("locations", {})
+        for g in poke_locs.keys():
+            if g not in active_games:
+                active_games.append(g)
     else:
         data = {
             "num": 0,
             "type": [],
             "color": "#9C9C9C",
-            "locations": {"ruby": [], "sapphire": [], "emerald": []},
+            "locations": {game: [] for game in active_games},
             "is_caught": False
         }
     
@@ -612,9 +633,9 @@ def open_pokemon_editor(pokemon_name=None):
 
     # Locations
     location_boxes = {}
-    locations_data = data.get("locations", {"ruby": [], "sapphire": [], "emerald": []})
-    for game in ["ruby", "sapphire", "emerald"]:
-        ctk.CTkLabel(scroll, text=f"{game.capitalize()} locations (one per line):", anchor="w").pack(fill="x", pady=(5, 0))
+    locations_data = data.get("locations", {})
+    for game in active_games:
+        ctk.CTkLabel(scroll, text=f"{game[0].upper() + game[1:]} locations (one per line):", anchor="w").pack(fill="x", pady=(5, 0))
         tb = ctk.CTkTextbox(scroll, height=75)
         tb.pack(fill="x", pady=(0, 5))
         tb.insert("1.0", "\n".join(locations_data.get(game, [])))
