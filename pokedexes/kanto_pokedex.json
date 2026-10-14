@@ -1,0 +1,3192 @@
+{
+    "Bulbasaur": {
+        "num": 1,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Pallet Town"
+            ],
+            "leafgreen": [
+                "Pallet Town"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Ivysaur": {
+        "num": 2,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Bulbasaur"
+            ],
+            "leafgreen": [
+                "Evolve Bulbasaur"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Venusaur": {
+        "num": 3,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Bulbasaur/Ivysaur"
+            ],
+            "leafgreen": [
+                "Evolve Bulbasaur/Ivysaur"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Charmander": {
+        "num": 4,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [
+                "Pallet Town"
+            ],
+            "leafgreen": [
+                "Pallet Town"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Charmeleon": {
+        "num": 5,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Charmander"
+            ],
+            "leafgreen": [
+                "Evolve Charmander"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Charizard": {
+        "num": 6,
+        "type": [
+            "Fire",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Charmander/Charmeleon"
+            ],
+            "leafgreen": [
+                "Evolve Charmander/Charmeleon"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Squirtle": {
+        "num": 7,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Pallet Town"
+            ],
+            "leafgreen": [
+                "Pallet Town"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Wartortle": {
+        "num": 8,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Squirtle"
+            ],
+            "leafgreen": [
+                "Evolve Squirtle"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Blastoise": {
+        "num": 9,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Squirtle/Wartortle"
+            ],
+            "leafgreen": [
+                "Evolve Squirtle/Wartortle"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Caterpie": {
+        "num": 10,
+        "type": [
+            "Bug"
+        ],
+        "locations": {
+            "firered": [
+                "2",
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ],
+            "leafgreen": [
+                "2",
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Metapod": {
+        "num": 11,
+        "type": [
+            "Bug"
+        ],
+        "locations": {
+            "firered": [
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ],
+            "leafgreen": [
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Butterfree": {
+        "num": 12,
+        "type": [
+            "Bug",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Caterpie/Metapod"
+            ],
+            "leafgreen": [
+                "Evolve Caterpie/Metapod"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Weedle": {
+        "num": 13,
+        "type": [
+            "Bug",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "2",
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ],
+            "leafgreen": [
+                "2",
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Kakuna": {
+        "num": 14,
+        "type": [
+            "Bug",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ],
+            "leafgreen": [
+                "24",
+                "25",
+                "Pattern Bush",
+                "Viridian Forest"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Beedrill": {
+        "num": 15,
+        "type": [
+            "Bug",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Weedle/Kakuna"
+            ],
+            "leafgreen": [
+                "Evolve Weedle/Kakuna"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Pidgey": {
+        "num": 16,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "1",
+                "2",
+                "3",
+                "5",
+                "6",
+                "7",
+                "8",
+                "12",
+                "13",
+                "14",
+                "15",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Five Isle Meadow"
+            ],
+            "leafgreen": [
+                "1",
+                "2",
+                "3",
+                "5",
+                "6",
+                "7",
+                "8",
+                "12",
+                "13",
+                "14",
+                "15",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Five Isle Meadow"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Pidgeotto": {
+        "num": 17,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "13",
+                "14",
+                "15",
+                "Berry Forest",
+                "Bond Bridge",
+                "Five Isle Meadow"
+            ],
+            "leafgreen": [
+                "13",
+                "14",
+                "15",
+                "Berry Forest",
+                "Bond Bridge",
+                "Five Isle Meadow"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Pidgeot": {
+        "num": 18,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Pidgey/Pidgeotto"
+            ],
+            "leafgreen": [
+                "Evolve Pidgey/Pidgeotto"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Rattata": {
+        "num": 19,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "1",
+                "2",
+                "4",
+                "9",
+                "16",
+                "17",
+                "18",
+                "22",
+                "Pok\u00e9mon Mansion"
+            ],
+            "leafgreen": [
+                "1",
+                "2",
+                "4",
+                "9",
+                "16",
+                "17",
+                "18",
+                "22",
+                "Pok\u00e9mon Mansion"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Raticate": {
+        "num": 20,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "16",
+                "17",
+                "18",
+                "Pok\u00e9mon Mansion"
+            ],
+            "leafgreen": [
+                "16",
+                "17",
+                "18",
+                "Pok\u00e9mon Mansion"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Spearow": {
+        "num": 21,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "3",
+                "4",
+                "9",
+                "10",
+                "11",
+                "16",
+                "17",
+                "18",
+                "22",
+                "23",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Kindle Road",
+                "Mt. Ember",
+                "Ruin Valley",
+                "Treasure Beach",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "3",
+                "4",
+                "9",
+                "10",
+                "11",
+                "16",
+                "17",
+                "18",
+                "22",
+                "23",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Kindle Road",
+                "Mt. Ember",
+                "Ruin Valley",
+                "Treasure Beach",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Fearow": {
+        "num": 22,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "17",
+                "18",
+                "23",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Kindle Road",
+                "Mt. Ember",
+                "Ruin Valley",
+                "Sevault Canyon",
+                "Treasure Beach",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "17",
+                "18",
+                "23",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Kindle Road",
+                "Mt. Ember",
+                "Ruin Valley",
+                "Sevault Canyon",
+                "Treasure Beach",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Ekans": {
+        "num": 23,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "4",
+                "8",
+                "9",
+                "10",
+                "11",
+                "23"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Arbok": {
+        "num": 24,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "23",
+                "Victory Road"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Pikachu": {
+        "num": 25,
+        "type": [
+            "Electric"
+        ],
+        "locations": {
+            "firered": [
+                "Power Plant",
+                "Viridian Forest"
+            ],
+            "leafgreen": [
+                "Power Plant",
+                "Viridian Forest"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Raichu": {
+        "num": 26,
+        "type": [
+            "Electric"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Pikachu/Pichu"
+            ],
+            "leafgreen": [
+                "Evolve Pikachu/Pichu"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Sandshrew": {
+        "num": 27,
+        "type": [
+            "Ground"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "4",
+                "8",
+                "9",
+                "10",
+                "11",
+                "23"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Sandslash": {
+        "num": 28,
+        "type": [
+            "Ground"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "23",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Nidoran\u2640": {
+        "num": 29,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "3",
+                "5",
+                "Underground Path 5-6",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "3",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Nidorina": {
+        "num": 30,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "11",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Nidoqueen": {
+        "num": 31,
+        "type": [
+            "Poison",
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Nidoran\u2640/Nidorina"
+            ],
+            "leafgreen": [
+                "Evolve Nidoran\u2640/Nidorina"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Nidoran\u2642": {
+        "num": 32,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "3",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "3",
+                "5",
+                "Underground Path 5-6",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Nidorino": {
+        "num": 33,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "11",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Nidoking": {
+        "num": 34,
+        "type": [
+            "Poison",
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Nidoran\u2642/Nidorino"
+            ],
+            "leafgreen": [
+                "Evolve Nidoran\u2642/Nidorino"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Clefairy": {
+        "num": 35,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Celadon City",
+                "Mt. Moon"
+            ],
+            "leafgreen": [
+                "Celadon City",
+                "Mt. Moon"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Clefable": {
+        "num": 36,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Clefairy/Cleffa"
+            ],
+            "leafgreen": [
+                "Evolve Clefairy/Cleffa"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Vulpix": {
+        "num": 37,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "7",
+                "8",
+                "Pok\u00e9mon Mansion"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Ninetales": {
+        "num": 38,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "Evolve Vulpix"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Jigglypuff": {
+        "num": 39,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "3"
+            ],
+            "leafgreen": [
+                "3"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Wigglytuff": {
+        "num": 40,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Jigglypuff/Igglybuff"
+            ],
+            "leafgreen": [
+                "Evolve Jigglypuff/Igglybuff"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Zubat": {
+        "num": 41,
+        "type": [
+            "Poison",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Icefall Cave",
+                "Lost Cave",
+                "Mt. Moon",
+                "Rock Tunnel",
+                "Seafoam Islands",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "Icefall Cave",
+                "Lost Cave",
+                "Mt. Moon",
+                "Rock Tunnel",
+                "Seafoam Islands",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Golbat": {
+        "num": 42,
+        "type": [
+            "Poison",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave",
+                "Icefall Cave",
+                "Lost Cave",
+                "Seafoam Islands",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "Cerulean Cave",
+                "Icefall Cave",
+                "Lost Cave",
+                "Seafoam Islands",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Oddish": {
+        "num": 43,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "5",
+                "6",
+                "7",
+                "12",
+                "13",
+                "14",
+                "15",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Water Path"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Gloom": {
+        "num": 44,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "12",
+                "13",
+                "14",
+                "15",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Water Path"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Vileplume": {
+        "num": 45,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Oddish/Gloom"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Paras": {
+        "num": 46,
+        "type": [
+            "Bug",
+            "Grass"
+        ],
+        "locations": {
+            "firered": [
+                "Mt. Moon",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Mt. Moon",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Parasect": {
+        "num": 47,
+        "type": [
+            "Bug",
+            "Grass"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Cerulean Cave",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Venonat": {
+        "num": 48,
+        "type": [
+            "Bug",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "12",
+                "13",
+                "14",
+                "15",
+                "Berry Forest",
+                "Bond Bridge",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "12",
+                "13",
+                "14",
+                "15",
+                "Berry Forest",
+                "Bond Bridge",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Venomoth": {
+        "num": 49,
+        "type": [
+            "Bug",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Berry Forest",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Berry Forest",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Diglett": {
+        "num": 50,
+        "type": [
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Diglett's Cave"
+            ],
+            "leafgreen": [
+                "Diglett's Cave"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Dugtrio": {
+        "num": 51,
+        "type": [
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Diglett's Cave"
+            ],
+            "leafgreen": [
+                "Diglett's Cave"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Meowth": {
+        "num": 52,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "Bond Bridge",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Five Isle Meadow",
+                "Kindle Road",
+                "Ruin Valley",
+                "Sevault Canyon",
+                "Treasure Beach",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "Bond Bridge",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Five Isle Meadow",
+                "Kindle Road",
+                "Ruin Valley",
+                "Sevault Canyon",
+                "Treasure Beach",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Persian": {
+        "num": 53,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Bond Bridge",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Five Isle Meadow",
+                "Kindle Road",
+                "Ruin Valley",
+                "Sevault Canyon",
+                "Treasure Beach",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "Bond Bridge",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Five Isle Meadow",
+                "Kindle Road",
+                "Ruin Valley",
+                "Sevault Canyon",
+                "Treasure Beach",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Psyduck": {
+        "num": 54,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "4",
+                "6",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Celadon City",
+                "Cerulean Cave",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Four Island",
+                "Fuchsia City",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Ruin Valley",
+                "Seafoam Islands",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Viridian City",
+                "Water Labyrinth",
+                "Water Path",
+                "Safari Zone"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Golduck": {
+        "num": 55,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Berry Forest",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Seafoam Islands"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Mankey": {
+        "num": 56,
+        "type": [
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "3",
+                "4",
+                "22",
+                "23",
+                "Rock Tunnel"
+            ],
+            "leafgreen": [
+                "3",
+                "4",
+                "22",
+                "23",
+                "Rock Tunnel"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Primeape": {
+        "num": 57,
+        "type": [
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "23",
+                "Cerulean Cave",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "23",
+                "Cerulean Cave",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Growlithe": {
+        "num": 58,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [
+                "7",
+                "8",
+                "Pok\u00e9mon Mansion"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Arcanine": {
+        "num": 59,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Growlithe"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Poliwag": {
+        "num": 60,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "6",
+                "22",
+                "23",
+                "25",
+                "Berry Forest",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Four Island",
+                "Fuchsia City",
+                "Icefall Cave",
+                "Ruin Valley",
+                "Viridian City",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "6",
+                "22",
+                "23",
+                "25",
+                "Berry Forest",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Four Island",
+                "Fuchsia City",
+                "Icefall Cave",
+                "Ruin Valley",
+                "Viridian City",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Poliwhirl": {
+        "num": 61,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "6",
+                "22",
+                "23",
+                "25",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Four Island",
+                "Icefall Cave",
+                "Ruin Valley",
+                "Viridian City"
+            ],
+            "leafgreen": [
+                "6",
+                "22",
+                "23",
+                "25",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Four Island",
+                "Icefall Cave",
+                "Ruin Valley",
+                "Viridian City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Poliwrath": {
+        "num": 62,
+        "type": [
+            "Water",
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Poliwag/Poliwhirl"
+            ],
+            "leafgreen": [
+                "Evolve Poliwag/Poliwhirl"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Abra": {
+        "num": 63,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "24",
+                "25",
+                "Celadon City"
+            ],
+            "leafgreen": [
+                "24",
+                "25",
+                "Celadon City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Kadabra": {
+        "num": 64,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave"
+            ],
+            "leafgreen": [
+                "Cerulean Cave"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Alakazam": {
+        "num": 65,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Abra/Kadabra"
+            ],
+            "leafgreen": [
+                "Evolve Abra/Kadabra"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Machop": {
+        "num": 66,
+        "type": [
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "Mt. Ember",
+                "Rock Tunnel",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "Mt. Ember",
+                "Rock Tunnel",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Machoke": {
+        "num": 67,
+        "type": [
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave",
+                "Mt. Ember",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "Cerulean Cave",
+                "Mt. Ember",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Machamp": {
+        "num": 68,
+        "type": [
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Machop/Machoke"
+            ],
+            "leafgreen": [
+                "Evolve Machop/Machoke"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Bellsprout": {
+        "num": 69,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "5",
+                "6",
+                "7",
+                "12",
+                "13",
+                "14",
+                "15",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Weepinbell": {
+        "num": 70,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "12",
+                "13",
+                "14",
+                "15",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Victreebel": {
+        "num": 71,
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "Evolve Bellsprout/Weepinbell"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Tentacool": {
+        "num": 72,
+        "type": [
+            "Water",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "4",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "24",
+                "Bond Bridge",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Water Labyrinth",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "4",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "24",
+                "Bond Bridge",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Water Labyrinth",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Tentacruel": {
+        "num": 73,
+        "type": [
+            "Water",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Bond Bridge",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Resort Gorgeous",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Water Labyrinth",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "Bond Bridge",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Resort Gorgeous",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Water Labyrinth",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Geodude": {
+        "num": 74,
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave",
+                "Kindle Road",
+                "Mt. Ember",
+                "Mt. Moon",
+                "Rock Tunnel",
+                "Sevault Canyon",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "Cerulean Cave",
+                "Kindle Road",
+                "Mt. Ember",
+                "Mt. Moon",
+                "Rock Tunnel",
+                "Sevault Canyon",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Graveler": {
+        "num": 75,
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave",
+                "Kindle Road",
+                "Mt. Ember",
+                "Rock Tunnel",
+                "Sevault Canyon"
+            ],
+            "leafgreen": [
+                "Cerulean Cave",
+                "Kindle Road",
+                "Mt. Ember",
+                "Rock Tunnel",
+                "Sevault Canyon"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Golem": {
+        "num": 76,
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Geodude/Graveler"
+            ],
+            "leafgreen": [
+                "Evolve Geodude/Graveler"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Ponyta": {
+        "num": 77,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [
+                "Kindle Road",
+                "Mt. Ember"
+            ],
+            "leafgreen": [
+                "Kindle Road",
+                "Mt. Ember"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Rapidash": {
+        "num": 78,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [
+                "Kindle Road",
+                "Mt. Ember"
+            ],
+            "leafgreen": [
+                "Kindle Road",
+                "Mt. Ember"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Slowpoke": {
+        "num": 79,
+        "type": [
+            "Water",
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "4",
+                "6",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Canyon Entrance",
+                "Cape Brink",
+                "Celadon City",
+                "Cerulean Cave",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Four Island",
+                "Fuchsia City",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Ruin Valley",
+                "Seafoam Islands",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Viridian City",
+                "Water Labyrinth",
+                "Water Path",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Slowbro": {
+        "num": 80,
+        "type": [
+            "Water",
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "Berry Forest",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Seafoam Islands"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Magnemite": {
+        "num": 81,
+        "type": [
+            "Electric",
+            "Steel"
+        ],
+        "locations": {
+            "firered": [
+                "Power Plant"
+            ],
+            "leafgreen": [
+                "Power Plant"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Magneton": {
+        "num": 82,
+        "type": [
+            "Electric",
+            "Steel"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave",
+                "Power Plant"
+            ],
+            "leafgreen": [
+                "Cerulean Cave",
+                "Power Plant"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Farfetch'd": {
+        "num": 83,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Vermilion City"
+            ],
+            "leafgreen": [
+                "Vermilion City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Doduo": {
+        "num": 84,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "16",
+                "17",
+                "18",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "16",
+                "17",
+                "18",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Dodrio": {
+        "num": 85,
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Doduo"
+            ],
+            "leafgreen": [
+                "Evolve Doduo"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Seel": {
+        "num": 86,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Cinnabar Island",
+                "Icefall Cave",
+                "Seafoam Islands"
+            ],
+            "leafgreen": [
+                "Cinnabar Island",
+                "Icefall Cave",
+                "Seafoam Islands"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Dewgong": {
+        "num": 87,
+        "type": [
+            "Water",
+            "Ice"
+        ],
+        "locations": {
+            "firered": [
+                "Icefall Cave",
+                "Seafoam Islands"
+            ],
+            "leafgreen": [
+                "Icefall Cave",
+                "Seafoam Islands"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Grimer": {
+        "num": 88,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Celadon City",
+                "Pok\u00e9mon Mansion"
+            ],
+            "leafgreen": [
+                "Celadon City",
+                "Pok\u00e9mon Mansion"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Muk": {
+        "num": 89,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Grimer"
+            ],
+            "leafgreen": [
+                "Pok\u00e9mon Mansion"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Shellder": {
+        "num": 90,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Cinnabar Island",
+                "Five Island",
+                "Icefall Cave",
+                "One Island",
+                "Pallet Town",
+                "Vermilion City"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Cloyster": {
+        "num": 91,
+        "type": [
+            "Water",
+            "Ice"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Shellder"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Gastly": {
+        "num": 92,
+        "type": [
+            "Ghost",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Lost Cave",
+                "Pok\u00e9mon Tower"
+            ],
+            "leafgreen": [
+                "Lost Cave",
+                "Pok\u00e9mon Tower"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Haunter": {
+        "num": 93,
+        "type": [
+            "Ghost",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Lost Cave",
+                "Pok\u00e9mon Tower"
+            ],
+            "leafgreen": [
+                "Lost Cave",
+                "Pok\u00e9mon Tower"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Gengar": {
+        "num": 94,
+        "type": [
+            "Ghost",
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Gastly/Haunter"
+            ],
+            "leafgreen": [
+                "Evolve Gastly/Haunter"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Onix": {
+        "num": 95,
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Rock Tunnel",
+                "Sevault Canyon",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "Rock Tunnel",
+                "Sevault Canyon",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Drowzee": {
+        "num": 96,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "11",
+                "Berry Forest"
+            ],
+            "leafgreen": [
+                "11",
+                "Berry Forest"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Hypno": {
+        "num": 97,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "Berry Forest"
+            ],
+            "leafgreen": [
+                "Berry Forest"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Krabby": {
+        "num": 98,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "4",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "24",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Pallet Town",
+                "Seafoam Islands",
+                "Vermilion City"
+            ],
+            "leafgreen": [
+                "4",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "24",
+                "Bond Bridge",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Seafoam Islands",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Water Labyrinth",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Kingler": {
+        "num": 99,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Krabby"
+            ],
+            "leafgreen": [
+                "Bond Bridge",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Water Labyrinth",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Voltorb": {
+        "num": 100,
+        "type": [
+            "Electric"
+        ],
+        "locations": {
+            "firered": [
+                "10",
+                "Power Plant"
+            ],
+            "leafgreen": [
+                "10",
+                "Power Plant"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Electrode": {
+        "num": 101,
+        "type": [
+            "Electric"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave",
+                "Cinnabar Island"
+            ],
+            "leafgreen": [
+                "Cerulean Cave",
+                "Cinnabar Island"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Exeggcute": {
+        "num": 102,
+        "type": [
+            "Grass",
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "Berry Forest",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Berry Forest",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Exeggutor": {
+        "num": 103,
+        "type": [
+            "Grass",
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Exeggcute"
+            ],
+            "leafgreen": [
+                "Evolve Exeggcute"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Cubone": {
+        "num": 104,
+        "type": [
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Pok\u00e9mon Tower",
+                "Sevault Canyon"
+            ],
+            "leafgreen": [
+                "Pok\u00e9mon Tower",
+                "Sevault Canyon"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Marowak": {
+        "num": 105,
+        "type": [
+            "Ground"
+        ],
+        "locations": {
+            "firered": [
+                "Sevault Canyon",
+                "Victory Road"
+            ],
+            "leafgreen": [
+                "Sevault Canyon",
+                "Victory Road"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Hitmonlee": {
+        "num": 106,
+        "type": [
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "Saffron City"
+            ],
+            "leafgreen": [
+                "Saffron City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Hitmonchan": {
+        "num": 107,
+        "type": [
+            "Fighting"
+        ],
+        "locations": {
+            "firered": [
+                "Saffron City"
+            ],
+            "leafgreen": [
+                "Saffron City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Lickitung": {
+        "num": 108,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "18"
+            ],
+            "leafgreen": [
+                "18"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Koffing": {
+        "num": 109,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Celadon City",
+                "Pok\u00e9mon Mansion"
+            ],
+            "leafgreen": [
+                "Celadon City",
+                "Pok\u00e9mon Mansion"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Weezing": {
+        "num": 110,
+        "type": [
+            "Poison"
+        ],
+        "locations": {
+            "firered": [
+                "Pok\u00e9mon Mansion"
+            ],
+            "leafgreen": [
+                "Evolve Koffing"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Rhyhorn": {
+        "num": 111,
+        "type": [
+            "Ground",
+            "Rock"
+        ],
+        "locations": {
+            "firered": [
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Rhydon": {
+        "num": 112,
+        "type": [
+            "Ground",
+            "Rock"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Rhyhorn"
+            ],
+            "leafgreen": [
+                "Evolve Rhyhorn"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Chansey": {
+        "num": 113,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Tangela": {
+        "num": 114,
+        "type": [
+            "Grass"
+        ],
+        "locations": {
+            "firered": [
+                "21",
+                "Cinnabar Island",
+                "Treasure Beach"
+            ],
+            "leafgreen": [
+                "21",
+                "Cinnabar Island",
+                "Treasure Beach"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Kangaskhan": {
+        "num": 115,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Horsea": {
+        "num": 116,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "4",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "24",
+                "Bond Bridge",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Seafoam Islands",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Water Labyrinth",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "4",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "24",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Pallet Town",
+                "Seafoam Islands",
+                "Vermilion City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Seadra": {
+        "num": 117,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Bond Bridge",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Water Labyrinth",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "Evolve Horsea"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Goldeen": {
+        "num": 118,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "6",
+                "22",
+                "23",
+                "25",
+                "Berry Forest",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Four Island",
+                "Fuchsia City",
+                "Icefall Cave",
+                "Ruin Valley",
+                "Viridian City",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "6",
+                "22",
+                "23",
+                "25",
+                "Berry Forest",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Four Island",
+                "Fuchsia City",
+                "Icefall Cave",
+                "Ruin Valley",
+                "Viridian City",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Seaking": {
+        "num": 119,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Berry Forest",
+                "Fuchsia City",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Berry Forest",
+                "Fuchsia City",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Staryu": {
+        "num": 120,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "Cinnabar Island",
+                "Five Island",
+                "Icefall Cave",
+                "One Island",
+                "Pallet Town",
+                "Vermilion City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Starmie": {
+        "num": 121,
+        "type": [
+            "Water",
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "Evolve Staryu"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Mr. Mime": {
+        "num": 122,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "2"
+            ],
+            "leafgreen": [
+                "2"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Scyther": {
+        "num": 123,
+        "type": [
+            "Bug",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Celadon City",
+                "Safari Zone"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Jynx": {
+        "num": 124,
+        "type": [
+            "Ice",
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean City"
+            ],
+            "leafgreen": [
+                "Cerulean City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Electabuzz": {
+        "num": 125,
+        "type": [
+            "Electric"
+        ],
+        "locations": {
+            "firered": [
+                "Power Plant"
+            ],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    },
+    "Magmar": {
+        "num": 126,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "Mt. Ember"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Pinsir": {
+        "num": 127,
+        "type": [
+            "Bug"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": [
+                "Celadon City",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Tauros": {
+        "num": 128,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Magikarp": {
+        "num": 129,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "4",
+                "6",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Celadon City",
+                "Cerulean Cave",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Four Island",
+                "Fuchsia City",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Ruin Valley",
+                "Seafoam Islands",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Viridian City",
+                "Water Labyrinth",
+                "Water Path",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "4",
+                "6",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Celadon City",
+                "Cerulean Cave",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Four Island",
+                "Fuchsia City",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Ruin Valley",
+                "Seafoam Islands",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Viridian City",
+                "Water Labyrinth",
+                "Water Path",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Gyarados": {
+        "num": 130,
+        "type": [
+            "Water",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "4",
+                "6",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Four Island",
+                "Fuchsia City",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Ruin Valley",
+                "Seafoam Islands",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Viridian City",
+                "Water Labyrinth",
+                "Water Path"
+            ],
+            "leafgreen": [
+                "4",
+                "6",
+                "10",
+                "11",
+                "12",
+                "13",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "Berry Forest",
+                "Bond Bridge",
+                "Cape Brink",
+                "Cerulean Cave",
+                "Cerulean City",
+                "Cinnabar Island",
+                "Five Island",
+                "Five Isle Meadow",
+                "Four Island",
+                "Fuchsia City",
+                "Green Path",
+                "Icefall Cave",
+                "Kindle Road",
+                "Memorial Pillar",
+                "One Island",
+                "Outcast Island",
+                "Pallet Town",
+                "Resort Gorgeous",
+                "Ruin Valley",
+                "Seafoam Islands",
+                "Tanoby Ruins",
+                "Trainer Tower",
+                "Treasure Beach",
+                "Vermilion City",
+                "Viridian City",
+                "Water Labyrinth",
+                "Water Path"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Lapras": {
+        "num": 131,
+        "type": [
+            "Water",
+            "Ice"
+        ],
+        "locations": {
+            "firered": [
+                "Icefall Cave",
+                "Silph Co."
+            ],
+            "leafgreen": [
+                "Icefall Cave",
+                "Silph Co."
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Ditto": {
+        "num": 132,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "13",
+                "14",
+                "15",
+                "Cerulean Cave",
+                "Pok\u00e9mon Mansion"
+            ],
+            "leafgreen": [
+                "13",
+                "14",
+                "15",
+                "Cerulean Cave",
+                "Pok\u00e9mon Mansion"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Eevee": {
+        "num": 133,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Celadon City"
+            ],
+            "leafgreen": [
+                "Celadon City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Vaporeon": {
+        "num": 134,
+        "type": [
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Eevee"
+            ],
+            "leafgreen": [
+                "Evolve Eevee"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Jolteon": {
+        "num": 135,
+        "type": [
+            "Electric"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Eevee"
+            ],
+            "leafgreen": [
+                "Evolve Eevee"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Flareon": {
+        "num": 136,
+        "type": [
+            "Fire"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Eevee"
+            ],
+            "leafgreen": [
+                "Evolve Eevee"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Porygon": {
+        "num": 137,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "Celadon City"
+            ],
+            "leafgreen": [
+                "Celadon City"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Omanyte": {
+        "num": 138,
+        "type": [
+            "Rock",
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Cinnabar Island"
+            ],
+            "leafgreen": [
+                "Cinnabar Island"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Omastar": {
+        "num": 139,
+        "type": [
+            "Rock",
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Omanyte"
+            ],
+            "leafgreen": [
+                "Evolve Omanyte"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Kabuto": {
+        "num": 140,
+        "type": [
+            "Rock",
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Cinnabar Island"
+            ],
+            "leafgreen": [
+                "Cinnabar Island"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Kabutops": {
+        "num": 141,
+        "type": [
+            "Rock",
+            "Water"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Kabuto"
+            ],
+            "leafgreen": [
+                "Evolve Kabuto"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Aerodactyl": {
+        "num": 142,
+        "type": [
+            "Rock",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Cinnabar Island"
+            ],
+            "leafgreen": [
+                "Cinnabar Island"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Snorlax": {
+        "num": 143,
+        "type": [
+            "Normal"
+        ],
+        "locations": {
+            "firered": [
+                "12",
+                "16"
+            ],
+            "leafgreen": [
+                "12",
+                "16"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Articuno": {
+        "num": 144,
+        "type": [
+            "Ice",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Seafoam Islands"
+            ],
+            "leafgreen": [
+                "Seafoam Islands"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Zapdos": {
+        "num": 145,
+        "type": [
+            "Electric",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Power Plant"
+            ],
+            "leafgreen": [
+                "Power Plant"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Moltres": {
+        "num": 146,
+        "type": [
+            "Fire",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Mt. Ember"
+            ],
+            "leafgreen": [
+                "Mt. Ember"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Dratini": {
+        "num": 147,
+        "type": [
+            "Dragon"
+        ],
+        "locations": {
+            "firered": [
+                "Celadon City",
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Celadon City",
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Dragonair": {
+        "num": 148,
+        "type": [
+            "Dragon"
+        ],
+        "locations": {
+            "firered": [
+                "Safari Zone"
+            ],
+            "leafgreen": [
+                "Safari Zone"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Dragonite": {
+        "num": 149,
+        "type": [
+            "Dragon",
+            "Flying"
+        ],
+        "locations": {
+            "firered": [
+                "Evolve Dratini/Dragonair"
+            ],
+            "leafgreen": [
+                "Evolve Dratini/Dragonair"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Mewtwo": {
+        "num": 150,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [
+                "Cerulean Cave"
+            ],
+            "leafgreen": [
+                "Cerulean Cave"
+            ]
+        },
+        "color": "#5A5A5A"
+    },
+    "Mew": {
+        "num": 151,
+        "type": [
+            "Psychic"
+        ],
+        "locations": {
+            "firered": [],
+            "leafgreen": []
+        },
+        "color": "#5A5A5A"
+    }
+}
